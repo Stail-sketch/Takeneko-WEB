@@ -17,14 +17,10 @@ body{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;back
 #particles{position:fixed;inset:0;z-index:2;pointer-events:none}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,250,252,.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--pink-lt);display:flex;align-items:center;justify-content:space-between;padding:.8rem 3rem;transition:all .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,250,252,.92);backdrop-filter:blur(20px);border-bottom:2px solid var(--pink-lt);display:flex;align-items:center;justify-content:flex-start;padding:.6rem 2rem;transition:background .4s,border-color .4s,box-shadow .3s}
 nav.scrolled{box-shadow:0 4px 30px rgba(255,133,179,.18)}
 .logo{font-size:1.5rem;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.06em;display:flex;align-items:center;gap:.4rem;text-decoration:none}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{text-decoration:none;color:var(--mid);font-weight:800;font-size:1rem;position:relative;padding-bottom:4px;transition:color .2s}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2.5px;background:linear-gradient(90deg,var(--pink),var(--purple));border-radius:999px;transition:width .3s}
-.nav-links a:hover{color:var(--pink)}
-.nav-links a:hover::after{width:100%}
+html{scroll-padding-top:3.6rem}
 
 /* HERO */
 #hero{min-height:100vh;background:linear-gradient(150deg,#ffe8f5 0%,#f3d8ff 35%,#d0f5f0 70%,#fff8c5 100%);display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
@@ -218,12 +214,20 @@ footer a:hover{color:var(--pink)}
 .rv{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .rv.in{opacity:1;transform:translateY(0)}
 
+@media(max-width:900px){
+  .pgrid-sub{grid-template-columns:1fr}
+}
 @media(max-width:640px){
+  #hero{padding:3.8rem 1.2rem 2.5rem}
+  .hero-inner{gap:2rem}
+  .hcatch{font-size:1rem}
+  .hname-en{font-size:.95rem;letter-spacing:.18em}
+  .si{padding:3.5rem 1.2rem}
   .chara{width:260px}
-  .nav-links{gap:.8rem}
-  .nav-links a{font-size:.78rem}
-  .pgrid{grid-template-columns:1fr}
+  .pgrid-sub{grid-template-columns:1fr}
   .slide-item{width:200px}
+  .omikuji-hero-card{padding:2.2rem 1.4rem}
+  .ohc-btn{font-size:1rem;padding:.85rem 2rem}
 }
 
 /* ====== AURORA KEYFRAMES (shared) ====== */
@@ -261,6 +265,19 @@ body{cursor:none}
 /* ====== Twitter タイムライン ====== */
 .tw-wrap{max-width:440px;margin:2.5rem auto 0;border-radius:1.6rem;overflow:hidden;border:2px solid var(--pink-lt);box-shadow:0 4px 20px rgba(255,133,179,.1)}
 @media(max-width:640px){#bgm-btn{bottom:1.2rem;right:1.2rem;width:3rem;height:3rem;font-size:1.1rem}}
+
+/* ====== おみくじ CARD SECTION ====== */
+#omikuji-section{background:linear-gradient(180deg,#f5f0ff 0%,#fef9f0 100%)}
+.omikuji-hero-card{max-width:640px;margin:0 auto;background:linear-gradient(140deg,#fffbee,#fff5fb,#fdf0ff);border-radius:2.8rem;padding:3.2rem 2.8rem;text-align:center;border:3px solid #e8a000;box-shadow:0 16px 60px rgba(232,160,0,.15),0 0 0 10px rgba(232,160,0,.05);position:relative;overflow:hidden}
+.omikuji-hero-card::before{content:'🎋';position:absolute;font-size:9rem;opacity:.06;top:-1.5rem;left:-2rem;transform:rotate(-20deg);pointer-events:none;user-select:none}
+.omikuji-hero-card::after{content:'🎋';position:absolute;font-size:9rem;opacity:.06;bottom:-1.5rem;right:-2rem;transform:rotate(15deg);pointer-events:none;user-select:none}
+.ohc-icon{font-size:3.8rem;display:block;margin-bottom:1rem;animation:oWobble 2s ease-in-out infinite}
+.ohc-title{font-size:1.9rem;font-weight:900;background:linear-gradient(90deg,#e8a000,#ff85b3,#c97aff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:.4rem}
+.ohc-sub{color:var(--mid);font-size:1rem;font-weight:700;margin-bottom:2rem;line-height:1.7}
+.ohc-btn{background:linear-gradient(90deg,#e8a000,#ff85b3);color:white;border:none;border-radius:999px;padding:1.05rem 3rem;font-size:1.2rem;font-weight:900;cursor:pointer;font-family:inherit;letter-spacing:.08em;box-shadow:0 6px 28px rgba(232,160,0,.45);transition:transform .25s,box-shadow .25s;position:relative;z-index:1}
+.ohc-btn:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 12px 40px rgba(232,160,0,.65)}
+body.dark #omikuji-section{background:linear-gradient(180deg,#150d22 0%,#1c1008 100%)!important}
+body.dark .omikuji-hero-card{background:linear-gradient(140deg,#2a1f35,#1e1228,#251635)!important;border-color:#c8a000!important}
 
 /* ====== DARK MODE ====== */
 body{transition:background-color .4s ease,color .4s ease}
@@ -346,14 +363,6 @@ body.dark .omikuji-sub{color:#9a70c0!important}
 
 <nav id="nav">
   <a href="#hero" class="logo">🎋🐈 たけねこ</a>
-  <ul class="nav-links">
-    <li><a href="#profile">プロフィール</a></li>
-    <li><a href="#gallery">ギャラリー</a></li>
-    <li><a href="#clips">クリップ</a></li>
-    <li><a href="#sns">SNS</a></li>
-    <li><a href="#contact">お仕事依頼</a></li>
-    <li><a href="#" id="omikuji-open">🎋 おみくじ</a></li>
-  </ul>
 </nav>
 
 <section id="hero">
@@ -427,6 +436,17 @@ body.dark .omikuji-sub{color:#9a70c0!important}
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<section id="omikuji-section">
+  <div class="si">
+    <div class="omikuji-hero-card rv">
+      <span class="ohc-icon">🎋</span>
+      <div class="ohc-title">たけねこおみくじ</div>
+      <div class="ohc-sub">今日のたけねこの運勢を占ってみよう！<br>毎日引いてもOK🐾</div>
+      <button class="ohc-btn" id="omikuji-open">今日のおみくじを引く🐾</button>
     </div>
   </div>
 </section>
