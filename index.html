@@ -261,6 +261,65 @@ body{cursor:none}
 /* ====== Twitter タイムライン ====== */
 .tw-wrap{max-width:440px;margin:2.5rem auto 0;border-radius:1.6rem;overflow:hidden;border:2px solid var(--pink-lt);box-shadow:0 4px 20px rgba(255,133,179,.1)}
 @media(max-width:640px){#bgm-btn{bottom:1.2rem;right:1.2rem;width:3rem;height:3rem;font-size:1.1rem}}
+
+/* ====== DARK MODE ====== */
+body{transition:background-color .4s ease,color .4s ease}
+body.dark{--white:#1a0f20;--black:#f5e6ff;--mid:#c9a0ff;--pink-pale:#2a1535;--pink-lt:#4a2560}
+body.dark nav{background:rgba(26,15,32,.95)!important;border-bottom-color:#4a2560!important}
+body.dark nav.scrolled{box-shadow:0 4px 30px rgba(100,20,150,.3)!important}
+body.dark #profile{background:linear-gradient(180deg,#1e1228 0%,#150d22 100%)!important}
+body.dark #gallery{background:linear-gradient(180deg,#14102a 0%,#1e1228 100%)!important}
+body.dark #clips{background:linear-gradient(180deg,#130e28 0%,#1e102a 100%)!important}
+body.dark #sns{background:linear-gradient(180deg,#1e1228 0%,#0f1e1a 100%)!important}
+body.dark #contact{background:linear-gradient(160deg,#2a1030 0%,#1e103a 50%,#0f2030 100%)!important}
+body.dark footer{background:#0f0a14!important;color:rgba(245,230,255,.5)!important}
+body.dark .pc{background:#2a1f35!important;border-color:#4a2560!important}
+body.dark .pc-a{background:linear-gradient(135deg,#3a1a28,#2d1230)!important;border-color:#7a2560!important}
+body.dark .pc-b{background:linear-gradient(135deg,#2d2510,#231a08)!important;border-color:#6b5200!important}
+body.dark .pc-c{background:linear-gradient(135deg,#3a1520,#2d1015)!important;border-color:#7a1830!important}
+body.dark .pc-d{background:linear-gradient(135deg,#101840,#0c1030)!important;border-color:#2030a0!important}
+body.dark .pc-e{background:linear-gradient(135deg,#200d3a,#180828)!important;border-color:#6020c0!important}
+body.dark .pc-f{background:linear-gradient(135deg,#0a2820,#081e18)!important;border-color:#006040!important}
+body.dark .pc-g{background:linear-gradient(135deg,#1a0d3a,#140828)!important;border-color:#5010c0!important}
+body.dark .sc{background:#2a1f35!important;border-color:#4a2560!important}
+body.dark .arrow-btn{background:#2a1f35!important}
+body.dark .btn-o{background:#2a1f35!important}
+body.dark .cbox{background:rgba(42,31,53,.9)!important;border-color:rgba(201,122,255,.3)!important}
+body.dark .tw-wrap{border-color:#4a2560!important}
+body.dark .clip-nav{background:rgba(42,31,53,.9)!important}
+body.dark .slider-wrap::after{background:linear-gradient(to left,rgba(20,10,30,.9),transparent)!important}
+body.dark .chip{background:#2a1f35!important;border-color:#4a2560!important;color:var(--pink)!important}
+body.dark .omikuji-box{background:linear-gradient(160deg,#2a1f35,#1e1228,#251635)!important;border-color:#c8a000!important}
+body.dark .omikuji-msg-text{color:#d4b0ff!important}
+body.dark .omikuji-sub{color:#9a70c0!important}
+/* テーマ切替ボタン */
+#theme-btn{position:fixed;bottom:1.8rem;right:5.8rem;z-index:500;width:3.4rem;height:3.4rem;border-radius:50%;background:linear-gradient(135deg,#5b7cff,#9333ea);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 22px rgba(91,124,255,.4);transition:all .25s}
+#theme-btn:hover{transform:scale(1.15);box-shadow:0 6px 32px rgba(91,124,255,.65)}
+@media(max-width:640px){#theme-btn{bottom:1.2rem;right:5rem;width:3rem;height:3rem;font-size:1.1rem}}
+
+/* ====== おみくじ MODAL ====== */
+#omikuji-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(20,8,30,.72);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
+#omikuji-modal.open{opacity:1;pointer-events:all}
+.omikuji-box{background:linear-gradient(160deg,#fffbf0,#fff5fb,#fdf0ff);border-radius:2.4rem;padding:2.6rem 2.8rem;max-width:420px;width:90%;text-align:center;border:3px solid #e8a000;box-shadow:0 20px 80px rgba(201,122,255,.4),0 0 0 8px rgba(232,160,0,.08);position:relative;transform:scale(.85) translateY(20px);transition:transform .35s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+#omikuji-modal.open .omikuji-box{transform:scale(1) translateY(0)}
+.omikuji-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#c9a0ff;line-height:1;transition:color .2s;font-weight:900;z-index:2}
+.omikuji-close:hover{color:var(--pink)}
+.omikuji-head{font-size:1.7rem;font-weight:900;background:linear-gradient(90deg,#e8a000,#ff85b3,#c97aff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:.3rem}
+.omikuji-sub{color:#8a6090;font-size:.88rem;font-weight:700;letter-spacing:.1em;margin-bottom:1.8rem}
+.omikuji-icon{width:5.5rem;height:5.5rem;background:linear-gradient(135deg,#e8a000,#ff85b3);border-radius:1.4rem;display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin:0 auto 1.6rem;box-shadow:0 6px 24px rgba(232,160,0,.4);animation:oWobble 2s ease-in-out infinite}
+@keyframes oWobble{0%,100%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.07)}}
+.omikuji-pull-btn{background:linear-gradient(90deg,#e8a000,#ff85b3);color:white;border:none;border-radius:999px;padding:.9rem 2.4rem;font-size:1.15rem;font-weight:900;cursor:pointer;font-family:inherit;letter-spacing:.06em;box-shadow:0 4px 22px rgba(232,160,0,.45);transition:transform .25s,box-shadow .25s}
+.omikuji-pull-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 32px rgba(232,160,0,.65)}
+.omikuji-result-area{display:none;flex-direction:column;align-items:center;gap:.6rem;margin-top:.5rem}
+.omikuji-result-area.show{display:flex;animation:oReveal .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes oReveal{from{opacity:0;transform:scale(.6) rotate(-6deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.omikuji-rank-text{font-size:3rem;font-weight:900;letter-spacing:.1em;padding:.35rem 1.6rem;border-radius:1.2rem;display:inline-block}
+.omikuji-msg-text{font-size:1rem;font-weight:800;color:#4a2560;line-height:1.8;margin:.5rem 0 1rem;padding:0 .5rem}
+.omikuji-again-btn{background:transparent;border:2.5px solid var(--pink);color:var(--pink);border-radius:999px;padding:.6rem 1.6rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s}
+.omikuji-again-btn:hover{background:var(--pink);color:white;transform:scale(1.04)}
+.omikuji-sparks{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:2.4rem}
+.o-spark{position:absolute;animation:oSparkFly 1.4s ease-out forwards}
+@keyframes oSparkFly{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.1) rotate(var(--rot))}}
 </style>
 </head>
 <body>
@@ -281,6 +340,7 @@ body{cursor:none}
   <source src="bgm.mp3" type="audio/mpeg">
 </audio>
 <button id="bgm-btn" class="muted" title="BGM ON/OFF">🎵</button>
+<button id="theme-btn" title="ダーク/ライトモード切替">🌙</button>
 
 <canvas id="particles"></canvas>
 
@@ -292,6 +352,7 @@ body{cursor:none}
     <li><a href="#clips">クリップ</a></li>
     <li><a href="#sns">SNS</a></li>
     <li><a href="#contact">お仕事依頼</a></li>
+    <li><a href="#" id="omikuji-open">🎋 おみくじ</a></li>
   </ul>
 </nav>
 
@@ -681,6 +742,23 @@ body{cursor:none}
   <a href="https://lit.link/takenekochan" target="_blank" rel="noopener">lit.link/takenekochan</a></small></p>
 </footer>
 
+<!-- おみくじモーダル -->
+<div id="omikuji-modal">
+  <div class="omikuji-box">
+    <button class="omikuji-close">✕</button>
+    <div class="omikuji-sparks"></div>
+    <div class="omikuji-head">🎋 たけねこおみくじ</div>
+    <div class="omikuji-sub">今日の運勢を占おう🐾</div>
+    <div class="omikuji-icon">🎋</div>
+    <button class="omikuji-pull-btn">おみくじを引く🐾</button>
+    <div class="omikuji-result-area">
+      <div class="omikuji-rank-text"></div>
+      <div class="omikuji-msg-text"></div>
+      <button class="omikuji-again-btn">もう一度引く</button>
+    </div>
+  </div>
+</div>
+
 <div id="lb">
   <button id="lb-close">✕</button>
   <button id="lb-prev">&#8249;</button>
@@ -954,6 +1032,96 @@ window.addEventListener('scroll',()=>{
   document.querySelectorAll('a[href^="#"]').forEach(el=>{
     el.addEventListener('click',()=>SFX.click());
   });
+})();
+
+// ====== DARK MODE TOGGLE ======
+(function(){
+  const btn=document.getElementById('theme-btn');
+  const body=document.body;
+  const saved=localStorage.getItem('darkMode');
+  const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark=saved!==null?saved==='1':prefersDark;
+  function applyDark(dark){
+    body.classList.toggle('dark',dark);
+    btn.textContent=dark?'☀️':'🌙';
+    localStorage.setItem('darkMode',dark?'1':'0');
+  }
+  applyDark(isDark);
+  btn.addEventListener('click',()=>applyDark(!body.classList.contains('dark')));
+})();
+
+// ====== おみくじ ======
+(function(){
+  const modal=document.getElementById('omikuji-modal');
+  const openBtn=document.getElementById('omikuji-open');
+  const closeBtn=modal.querySelector('.omikuji-close');
+  const pullBtn=modal.querySelector('.omikuji-pull-btn');
+  const iconEl=modal.querySelector('.omikuji-icon');
+  const resultArea=modal.querySelector('.omikuji-result-area');
+  const rankEl=modal.querySelector('.omikuji-rank-text');
+  const msgEl=modal.querySelector('.omikuji-msg-text');
+  const againBtn=modal.querySelector('.omikuji-again-btn');
+  const sparksEl=modal.querySelector('.omikuji-sparks');
+  const FORTUNES=[
+    {rank:'大吉',style:'background:linear-gradient(135deg,#e8a000,#ffcc44);color:white;text-shadow:0 2px 8px rgba(0,0,0,.2)',msg:'今日のLoLは無双できる！イブリン最強！🗡️'},
+    {rank:'中吉',style:'background:linear-gradient(135deg,#ff85b3,#ff9cc0);color:white',msg:'まあまあ勝てる。でもスモルダーには注意🐾'},
+    {rank:'小吉',style:'background:linear-gradient(135deg,#5ee8c8,#00d4a8);color:#065f46',msg:'普通の日。昼寝してから配信しよう😴'},
+    {rank:'末吉',style:'background:linear-gradient(135deg,#a0aec0,#718096);color:white',msg:'今日はJGがガンクしてくれない予感…'},
+    {rank:'凶',style:'background:linear-gradient(135deg,#f56565,#e53e3e);color:white',msg:'スタックたまらない日。ヴェインに溶かされる💀'},
+    {rank:'大凶',style:'background:linear-gradient(135deg,#4a1942,#2d1230);color:#ff85b3;border:2px solid #ff85b3',msg:'降参ボタンの夢を見た。今日は酒だけ飲もう🍶'},
+  ];
+  function openModal(){
+    modal.classList.add('open');
+    document.body.style.overflow='hidden';
+    resetState();
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function resetState(){
+    pullBtn.style.display='';
+    pullBtn.disabled=false;
+    pullBtn.style.animation='';
+    iconEl.style.display='';
+    resultArea.classList.remove('show');
+  }
+  function spawnSparks(){
+    sparksEl.innerHTML='';
+    const EMOJIS=['✨','🌟','⭐','💫','🎋','🐾','🌸','💖','🍀','🎉'];
+    for(let i=0;i<22;i++){
+      const s=document.createElement('span');
+      s.className='o-spark';
+      s.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+      const angle=Math.random()*360;
+      const dist=70+Math.random()*130;
+      s.style.cssText=`left:50%;top:50%;--tx:${Math.cos(angle*Math.PI/180)*dist}px;--ty:${Math.sin(angle*Math.PI/180)*dist}px;--rot:${(Math.random()-.5)*720}deg;animation-delay:${Math.random()*.4}s;font-size:${.7+Math.random()*1}rem`;
+      sparksEl.appendChild(s);
+      setTimeout(()=>s.remove(),1900);
+    }
+  }
+  pullBtn.addEventListener('click',()=>{
+    pullBtn.disabled=true;
+    pullBtn.style.animation='oWobble .12s 4';
+    setTimeout(()=>{
+      pullBtn.style.display='none';
+      iconEl.style.display='none';
+      const f=FORTUNES[Math.floor(Math.random()*FORTUNES.length)];
+      rankEl.setAttribute('style',f.style);
+      rankEl.textContent=f.rank;
+      msgEl.textContent=f.msg;
+      resultArea.classList.add('show');
+      spawnSparks();
+    },500);
+  });
+  againBtn.addEventListener('click',()=>{
+    resultArea.classList.remove('show');
+    setTimeout(resetState,150);
+  });
+  openBtn.addEventListener('click',e=>{e.preventDefault();openModal();});
+  closeBtn.addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
 })();
 
 // SLIDER ARROWS
