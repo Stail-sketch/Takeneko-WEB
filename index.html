@@ -137,12 +137,6 @@ section{position:relative}
 /* お写真は横長も考慮 */
 .photos-slider .slide-item img{aspect-ratio:unset;max-height:380px;object-fit:contain;background:#faf7ff}
 
-/* SPOILER */
-.slide-item.spoiler img{filter:blur(20px)}
-.slide-item.spoiler.revealed img{filter:blur(0)}
-.spoiler-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(44,31,46,.4);color:white;font-weight:800;font-size:.9rem;gap:.4rem;transition:opacity .3s;z-index:2;pointer-events:none}
-.spoiler-overlay::before{content:'🔞';font-size:1.8rem}
-.slide-item.spoiler.revealed .spoiler-overlay{opacity:0}
 
 /* scroll hint fade edges */
 .slider-wrap::after{content:'';position:absolute;right:0;top:0;bottom:1.2rem;width:60px;background:linear-gradient(to left,rgba(248,240,255,.9),transparent);pointer-events:none;border-radius:0 1.2rem 1.2rem 0}
@@ -517,17 +511,14 @@ footer a:hover{color:var(--pink)}
           <img src="ファンアート/IMG_0891.png" alt="IMG_0891.png" loading="lazy">
           
         </div>
-        <div class="slide-item spoiler" data-src="ファンアート/SPOILER_.png" data-idx="30">
+        <div class="slide-item" data-src="ファンアート/SPOILER_.png" data-idx="30">
           <img src="ファンアート/SPOILER_.png" alt="SPOILER_.png" loading="lazy">
-          <div class="spoiler-overlay">クリックで表示</div>
         </div>
-        <div class="slide-item spoiler" data-src="ファンアート/SPOILER_2025.png" data-idx="31">
+        <div class="slide-item" data-src="ファンアート/SPOILER_2025.png" data-idx="31">
           <img src="ファンアート/SPOILER_2025.png" alt="SPOILER_2025.png" loading="lazy">
-          <div class="spoiler-overlay">クリックで表示</div>
         </div>
-        <div class="slide-item spoiler" data-src="ファンアート/SPOILER_１.png" data-idx="32">
+        <div class="slide-item" data-src="ファンアート/SPOILER_１.png" data-idx="32">
           <img src="ファンアート/SPOILER_１.png" alt="SPOILER_１.png" loading="lazy">
-          <div class="spoiler-overlay">クリックで表示</div>
         </div>
         <div class="slide-item" data-src="ファンアート/a6391b52db95eccd.png" data-idx="33">
           <img src="ファンアート/a6391b52db95eccd.png" alt="a6391b52db95eccd.png" loading="lazy">
@@ -782,12 +773,6 @@ document.head.appendChild(ss);
 function slideLeft(id){ document.getElementById(id).scrollBy({left:-550,behavior:'smooth'}); }
 function slideRight(id){ document.getElementById(id).scrollBy({left:550,behavior:'smooth'}); }
 
-// SPOILER
-document.querySelectorAll('.slide-item.spoiler').forEach(el=>{
-  el.addEventListener('click',e=>{
-    if(!el.classList.contains('revealed')){ e.stopPropagation(); el.classList.add('revealed'); }
-  });
-});
 
 // LIGHTBOX
 const lb=document.getElementById('lb');
@@ -809,7 +794,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   allItems=Array.from(document.querySelectorAll('.slide-item'));
   allItems.forEach((el,i)=>{
     el.addEventListener('click',()=>{
-      if(el.classList.contains('spoiler')&&!el.classList.contains('revealed')) return;
       openLb(i);
     });
   });
