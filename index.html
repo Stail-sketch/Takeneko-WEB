@@ -29,7 +29,7 @@ nav.scrolled{box-shadow:0 4px 30px rgba(255,133,179,.15)}
 /* HERO */
 #hero{min-height:100vh;background:linear-gradient(150deg,#ffe8f5 0%,#f3d8ff 35%,#d0f5f0 70%,#fff8c5 100%);display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
 
-.img-wrap{position:relative;flex-shrink:0}
+.img-wrap{position:relative;flex-shrink:0;z-index:1}
 .img-ring{position:absolute;inset:-20px;border-radius:50% 42% 50% 42%;background:conic-gradient(from 0deg,var(--pink),var(--mint),var(--yellow),var(--purple),var(--pink));animation:spin 6s linear infinite;filter:blur(1px)}
 .img-ring2{position:absolute;inset:-10px;background:white;border-radius:50% 42% 50% 42%}
 .img-ring3{position:absolute;inset:-6px;border-radius:50% 42% 50% 42%;background:conic-gradient(from 180deg,var(--mint),var(--yellow),var(--purple),var(--pink),var(--mint));animation:spin 10s linear infinite reverse;opacity:.4}
@@ -41,7 +41,7 @@ nav.scrolled{box-shadow:0 4px 30px rgba(255,133,179,.15)}
 .fb2{bottom:30px;right:-30px;animation-delay:.8s;color:var(--purple)}
 .fb3{bottom:-10px;left:-10px;animation-delay:1.6s;color:var(--mint2)}
 @keyframes floatBadge{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
-.hero-text{text-align:center}
+.hero-text{text-align:center;position:relative;z-index:2}
 .badge{display:inline-flex;align-items:center;gap:.4rem;background:white;color:var(--pink);border:2.5px solid var(--pink-lt);border-radius:999px;font-size:1rem;font-weight:800;padding:.45rem 1.3rem;margin-bottom:1.4rem;letter-spacing:.08em}
 .hname{font-size:clamp(4rem,10vw,7.5rem);font-weight:900;line-height:.95;background:linear-gradient(135deg,var(--pink) 0%,var(--purple) 45%,var(--mint2) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem;animation:textShine 3s linear infinite;background-size:200% auto}
 @keyframes textShine{to{background-position:200% center}}
