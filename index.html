@@ -827,128 +827,114 @@ document.addEventListener('keydown',e=>{
 
 // CLIPS SLIDER
 (function(){
-  const C=[
-    {id:"FragileTenaciousLettuceAMPEnergy-GRGaJ6KG68eSa9IL",title:"あの？",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/FragileTenaciousLettuceAMPEnergy-GRGaJ6KG68eSa9IL/4926b6ac-16a2-4817-bb29-5231055f644a/preview-480x272.jpg",views:411,dur:40.9},
-    {id:"GlutenFreeAbstemiousPheasantWutFace-4POavQBjD3SA-5wN",title:"ブロンズ！！！！！！！！！！！！！！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/GlutenFreeAbstemiousPheasantWutFace-4POavQBjD3SA-5wN/a1a61410-981f-451a-8fb4-1246469ada65/preview-480x272.jpg",views:312,dur:28.6},
-    {id:"TenaciousSpikyConsoleSeemsGood-aifhbFY2Ly5NmdQb",title:"激あち！マルファイトエンゲージ、ニーラペンタキル！！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/TenaciousSpikyConsoleSeemsGood-aifhbFY2Ly5NmdQb/55061cba-6166-4298-8492-229d187227a9/preview-480x272.jpg",views:272,dur:52.5},
-    {id:"BovineFurryBisonYee-jcqVCXye4Hosog63",title:"リスナーの彼氏面キッツwwwww",thumb:"https://static-cdn.jtvnw.net/twitch-clips/3KxqNY3KlQl8nuB6LKIOtw/AT-cm%7C3KxqNY3KlQl8nuB6LKIOtw-preview-480x272.jpg",views:191,dur:40.5},
-    {id:"RichOddAuberginePJSugar-8RUYD5G0MnyMU2v5",title:"おはようななせ",thumb:"https://static-cdn.jtvnw.net/twitch-clips/hSIl8PEVGA-RtDJ8jFNr-Q/AT-cm%7ChSIl8PEVGA-RtDJ8jFNr-Q-preview-480x272.jpg",views:183,dur:6.6},
-    {id:"AstutePoliteAlmondSSSsss-jGKVH0tqbnNO555h",title:"あああああああああっしゅううう",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AstutePoliteAlmondSSSsss-jGKVH0tqbnNO555h/411be96c-7a94-4ecb-a437-bcd17dbf63d1/preview-480x272.jpg",views:181,dur:26.7},
-    {id:"AdorableWittyAubergineLitFam-vgXIQkAEsDoss7oP",title:"れおなのうるとうまーい！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/AdorableWittyAubergineLitFam-vgXIQkAEsDoss7oP/e7ea9713-c536-4a34-a2b8-a1de135d2d13/preview-480x272.jpg",views:170,dur:25.7},
-    {id:"RelievedLightBisonTriHard-qG9sHXglHLbqpjQE",title:"なんとかならんかそれー",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/RelievedLightBisonTriHard-qG9sHXglHLbqpjQE/17509147-4248-4c38-baec-ab71d4eeaae1/preview-480x272.jpg",views:146,dur:50.4},
-    {id:"PerfectBelovedYakinikuBrainSlug-7wC2_Ux3ASXdiVjT",title:"んんっ、ﾁｭｯ、ク○ガキが",thumb:"https://static-cdn.jtvnw.net/twitch-clips/h_qUue8Atv1MdwEl3YlY0w/AT-cm%7Ch_qUue8Atv1MdwEl3YlY0w-preview-480x272.jpg",views:139,dur:9.9},
-    {id:"NeighborlyCrypticAubergineSmoocherZ-EILXTilR4vohrLgo",title:"なんで8時間もフルクリアを練習していたか",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/NeighborlyCrypticAubergineSmoocherZ-EILXTilR4vohrLgo/70da80e7-46e5-449c-9f12-7a99833023a1/preview-480x272.jpg",views:135,dur:40.8},
-    {id:"MistyBadWalletRlyTho-NcfVhAEEk4ONYpjE",title:"ずっと好き",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/MistyBadWalletRlyTho-NcfVhAEEk4ONYpjE/59ff1397-eea9-409a-b46a-d73cdceb09ee/preview-480x272.jpg",views:133,dur:35.2},
-    {id:"ElegantObliqueOysterTTours-FQtwfLhG3s_98YRc",title:"ぶらいあーうっっま！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/ElegantObliqueOysterTTours-FQtwfLhG3s_98YRc/2a8ee620-8a2a-4cda-bd13-0f9de562f763/preview-480x272.jpg",views:121,dur:30},
-    {id:"HomelyResoluteGiraffeRitzMitz-SedKRs2td6zBuA0E",title:"あのさあ",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/HomelyResoluteGiraffeRitzMitz-SedKRs2td6zBuA0E/57a49bbc-844c-4974-b1ce-487b9c9f0955/preview-480x272.jpg",views:110,dur:49.5},
-    {id:"FaithfulSplendidKittenKlappa-yz7CiYmuNUCDRMS6",title:"うまくできた！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/FaithfulSplendidKittenKlappa-yz7CiYmuNUCDRMS6/74368fc7-f0c6-4aa6-9ac8-14ffb6c0fd6d/preview-480x272.jpg",views:110,dur:30},
-    {id:"EmpathicMistyMochaJKanStyle-Ev7jeBvYLDEUCMSk",title:"僕がエンゲージするのであきらめないでください",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/EmpathicMistyMochaJKanStyle-Ev7jeBvYLDEUCMSk/49a66679-dd51-4d4e-bd52-93a59d9ded8a/preview-480x272.jpg",views:106,dur:46.3},
-    {id:"LachrymosePhilanthropicSangBlargNaut-hBgrQJ-9bHhOWwFi",title:"あ！？WTFなんだけど！？！？まってだれかt",thumb:"https://static-cdn.jtvnw.net/twitch-clips/bRJdRYQYK0CfvWx4TlsBYg/AT-cm%7CbRJdRYQYK0CfvWx4TlsBYg-preview-480x272.jpg",views:99,dur:13.6},
-    {id:"BashfulSneakyAsteriskFloof-CNBJKycZVmQzRu27",title:"ばかおつｗ",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/BashfulSneakyAsteriskFloof-CNBJKycZVmQzRu27/de96fc48-816f-4827-912a-e5a7abcaeac4/preview-480x272.jpg",views:93,dur:60},
-    {id:"BlitheSincereDragonfruitNerfRedBlaster-NrWKbBGJ0hVBmOih",title:"ｴｯ‼ｱｲﾀｯ‼ｼﾒﾀｧ‼",thumb:"https://static-cdn.jtvnw.net/twitch-clips/GDZisja1imwRidIVQZjooQ/AT-cm%7CGDZisja1imwRidIVQZjooQ-preview-480x272.jpg",views:93,dur:7.1},
-    {id:"CoyFamousLouseDendiFace-yBKHRx_ol2AUrOax",title:"上手にできたよーーーー！！！",thumb:"https://static-cdn.jtvnw.net/twitch-clips-thumbnails-prod/CoyFamousLouseDendiFace-yBKHRx_ol2AUrOax/e0981f5c-d94d-45d3-87c0-cd208620adac/preview-480x272.jpg",views:87,dur:60},
-    {id:"AbrasiveRockyCarabeefBCouch-s_rFfApE00XdnHJD",title:"参加型VALORANTコンペ！プラチナ付近！",thumb:"https://static-cdn.jtvnw.net/twitch-clips/fQs3krP6xXwKRNNF3ZxyQw/41207347303-offset-29220-preview-480x272.jpg",views:85,dur:26}
-  ];
-
-  // シャッフル
-  for(let i=C.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[C[i],C[j]]=[C[j],C[i]];}
-
+  const MAX=50;
   const track=document.getElementById('clipTrack');
   const dotsEl=document.getElementById('clipDots');
   const titleEl=document.getElementById('clipTitle');
   const metaEl=document.getElementById('clipMeta');
-  let cur=0, busy=false;
 
   const fmt=s=>Math.floor(s/60)+':'+(Math.floor(s%60)+'').padStart(2,'0');
   const fmtV=n=>n>=1000?(n/1000).toFixed(1)+'K':String(n);
 
-  function mkThumb(c,i){
-    const w=document.createElement('div');
-    w.className='clip-thumb-wrap';
-    const img=document.createElement('img');
-    img.className='clip-thumb-img'; img.src=c.thumb; img.alt=c.title; img.loading='lazy';
-    const play=document.createElement('div');
-    play.className='clip-play';
-    play.innerHTML='<div class="clip-play-btn">▶</div>';
-    w.appendChild(img); w.appendChild(play);
-    w.addEventListener('click',()=>loadIframe(i));
-    return w;
-  }
+  fetch('clips.json')
+    .then(r=>r.json())
+    .then(all=>{
+      // フィールド変換
+      const raw=all.map(c=>({id:c.id,title:c.title,thumb:c.thumbnail_url,views:c.view_count,dur:c.duration}));
+      // 全件シャッフル → 最大MAX件を選択（毎回違う順番）
+      for(let i=raw.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[raw[i],raw[j]]=[raw[j],raw[i]];}
+      const C=raw.slice(0,MAX);
 
-  function loadIframe(i){
-    const slide=track.children[i];
-    slide.innerHTML='';
-    const fr=document.createElement('iframe');
-    fr.src='https://clips.twitch.tv/embed?clip='+C[i].id+'&parent=localhost&parent=stail-sketch.github.io&autoplay=true';
-    fr.allowFullscreen=true; fr.scrolling='no';
-    slide.appendChild(fr);
-  }
+      let cur=0, busy=false;
 
-  function resetSlide(i){
-    const slide=track.children[i];
-    slide.innerHTML='';
-    slide.appendChild(mkThumb(C[i],i));
-  }
+      function mkThumb(c,i){
+        const w=document.createElement('div');
+        w.className='clip-thumb-wrap';
+        const img=document.createElement('img');
+        img.className='clip-thumb-img'; img.src=c.thumb; img.alt=c.title; img.loading='lazy';
+        const play=document.createElement('div');
+        play.className='clip-play';
+        play.innerHTML='<div class="clip-play-btn">▶</div>';
+        w.appendChild(img); w.appendChild(play);
+        w.addEventListener('click',()=>loadIframe(i));
+        return w;
+      }
 
-  // スライド生成
-  C.forEach((c,i)=>{
-    const slide=document.createElement('div');
-    slide.className='clip-slide';
-    slide.style.cssText='transition:none;transform:translateX('+(i===0?'0':'100')+'%)';
-    slide.appendChild(mkThumb(c,i));
-    track.appendChild(slide);
-    const dot=document.createElement('button');
-    dot.className='clip-dot'+(i===0?' active':'');
-    dot.addEventListener('click',()=>goClip(i));
-    dotsEl.appendChild(dot);
-  });
-  // transition を遅延設定（初期スナップ後）
-  requestAnimationFrame(()=>{
-    Array.from(track.children).forEach(s=>s.style.transition='transform .45s cubic-bezier(.4,0,.2,1)');
-  });
+      function loadIframe(i){
+        const slide=track.children[i];
+        slide.innerHTML='';
+        const fr=document.createElement('iframe');
+        fr.src='https://clips.twitch.tv/embed?clip='+C[i].id+'&parent=localhost&parent=stail-sketch.github.io&autoplay=true';
+        fr.allowFullscreen=true; fr.scrolling='no';
+        slide.appendChild(fr);
+      }
 
-  function updateInfo(){
-    const c=C[cur];
-    titleEl.textContent=c.title;
-    metaEl.innerHTML='<span>👁 '+fmtV(c.views)+'</span><span>⏱ '+fmt(c.dur)+'</span>';
-  }
+      function resetSlide(i){
+        const slide=track.children[i];
+        slide.innerHTML='';
+        slide.appendChild(mkThumb(C[i],i));
+      }
 
-  function goClip(n){
-    if(busy)return;
-    const nxt=(n+C.length)%C.length;
-    if(nxt===cur)return;
-    busy=true;
-    const dir=((nxt-cur+C.length)%C.length<=C.length/2)?1:-1;
-    const leaving=track.children[cur];
-    const entering=track.children[nxt];
-    const oldCur=cur;
-    cur=nxt;
-    entering.style.transition='none';
-    entering.style.transform='translateX('+(dir*100)+'%)';
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      entering.style.transition='transform .45s cubic-bezier(.4,0,.2,1)';
-      entering.style.transform='translateX(0%)';
-      leaving.style.transform='translateX('+(-dir*100)+'%)';
-    }));
-    setTimeout(()=>{
-      leaving.style.transition='none';
-      leaving.style.transform='translateX(100%)';
-      resetSlide(oldCur);
-      busy=false;
-    },460);
-    dotsEl.querySelectorAll('.clip-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-    updateInfo();
-  }
+      // スライド生成
+      C.forEach((c,i)=>{
+        const slide=document.createElement('div');
+        slide.className='clip-slide';
+        slide.style.cssText='transition:none;transform:translateX('+(i===0?'0':'100')+'%)';
+        slide.appendChild(mkThumb(c,i));
+        track.appendChild(slide);
+        const dot=document.createElement('button');
+        dot.className='clip-dot'+(i===0?' active':'');
+        dot.addEventListener('click',()=>goClip(i));
+        dotsEl.appendChild(dot);
+      });
+      requestAnimationFrame(()=>{
+        Array.from(track.children).forEach(s=>s.style.transition='transform .45s cubic-bezier(.4,0,.2,1)');
+      });
 
-  document.getElementById('clipPrev').addEventListener('click',()=>goClip(cur-1));
-  document.getElementById('clipNext').addEventListener('click',()=>goClip(cur+1));
-  document.addEventListener('keydown',e=>{
-    if(lb.classList.contains('open'))return;
-    if(e.key==='ArrowLeft')goClip(cur-1);
-    if(e.key==='ArrowRight')goClip(cur+1);
-  });
+      function updateInfo(){
+        const c=C[cur];
+        titleEl.textContent=c.title;
+        metaEl.innerHTML='<span>👁 '+fmtV(c.views)+'</span><span>⏱ '+fmt(c.dur)+'</span>';
+      }
 
-  updateInfo();
+      function goClip(n){
+        if(busy)return;
+        const nxt=(n+C.length)%C.length;
+        if(nxt===cur)return;
+        busy=true;
+        const dir=((nxt-cur+C.length)%C.length<=C.length/2)?1:-1;
+        const leaving=track.children[cur];
+        const entering=track.children[nxt];
+        const oldCur=cur;
+        cur=nxt;
+        entering.style.transition='none';
+        entering.style.transform='translateX('+(dir*100)+'%)';
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          entering.style.transition='transform .45s cubic-bezier(.4,0,.2,1)';
+          entering.style.transform='translateX(0%)';
+          leaving.style.transform='translateX('+(-dir*100)+'%)';
+        }));
+        setTimeout(()=>{
+          leaving.style.transition='none';
+          leaving.style.transform='translateX(100%)';
+          resetSlide(oldCur);
+          busy=false;
+        },460);
+        dotsEl.querySelectorAll('.clip-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+        updateInfo();
+      }
+
+      document.getElementById('clipPrev').addEventListener('click',()=>goClip(cur-1));
+      document.getElementById('clipNext').addEventListener('click',()=>goClip(cur+1));
+      document.addEventListener('keydown',e=>{
+        if(lb.classList.contains('open'))return;
+        if(e.key==='ArrowLeft')goClip(cur-1);
+        if(e.key==='ArrowRight')goClip(cur+1);
+      });
+
+      updateInfo();
+    })
+    .catch(e=>console.error('clips.json load failed:',e));
 })();
 </script>
 </body>
