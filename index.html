@@ -614,11 +614,20 @@ function drawBamboo(x,y,h,a,c){
 class Floater {
   constructor(init=false){ this.spawn(init); }
   spawn(init=false){
-    this.x=Math.random()*W; this.y=init?Math.random()*H:H+60;
-    this.vx=(Math.random()-.5)*.5; this.vy=-(0.35+Math.random()*.5);
-    this.r=16+Math.random()*22; this.a=.12+Math.random()*.13;
-    this.rot=Math.random()*Math.PI*2; this.rv=(Math.random()-.5)*.022;
-    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
+    this.x=Math.random()*W;
+    this.y=init?Math.random()*H:H+60;
+    // サイズをバラバラに（小さいのも大きいのも）
+    this.r=8+Math.random()*28;
+    // 速度もバラバラ
+    this.vx=(Math.random()-.5)*(0.2+Math.random()*.6);
+    this.vy=-(0.15+Math.random()*.55);
+    // 透明度もバラバラ
+    this.a=.07+Math.random()*.18;
+    this.rot=Math.random()*Math.PI*2;
+    // 回転速度もバラバラ（止まるものも）
+    this.rv=(Math.random()-.5)*(Math.random()*.035);
+    this.t=Math.floor(Math.random()*3);
+    this.c=PC[Math.floor(Math.random()*PC.length)];
   }
   update(){ this.x+=this.vx; this.y+=this.vy; this.rot+=this.rv; if(this.y<-80)this.spawn(); }
   draw(){
@@ -630,78 +639,10 @@ class Floater {
   }
 }
 
-// 左右スライド
-class Slider {
-  constructor(){ this.spawn(); }
-  spawn(){
-    this.left=Math.random()<.5;
-    this.x=this.left?-120:W+120; this.y=60+Math.random()*(H-120);
-    this.vx=this.left?(0.6+Math.random()*.7):-(0.6+Math.random()*.7);
-    this.r=24+Math.random()*32; this.a=0; this.ta=.14+Math.random()*.12;
-    this.rot=(Math.random()-.5)*.4;
-    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
-    this.dead=false;
-  }
-  update(){
-    this.x+=this.vx;
-    if(this.a<this.ta) this.a=Math.min(this.ta,this.a+.006);
-    const m=130;
-    if(this.left&&this.x>W-m) this.a=Math.max(0,this.a-.007);
-    if(!this.left&&this.x<m) this.a=Math.max(0,this.a-.007);
-    if((this.left&&this.x>W+150)||(!this.left&&this.x<-150)) this.dead=true;
-  }
-  draw(){
-    if(this.a<=0) return;
-    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot);
-    if(this.t===0) drawPaw(0,0,this.r,this.a,this.c);
-    else if(this.t===1) drawCat(0,0,this.r,this.a,this.c);
-    else drawBamboo(0,0,this.r*3,this.a,this.c);
-    ctx.restore(); ctx.globalAlpha=1;
-  }
-}
-
-// ポップイン
-class Popper {
-  constructor(){ this.spawn(); }
-  spawn(){
-    this.x=60+Math.random()*(W-120); this.y=60+Math.random()*(H-120);
-    this.r=18+Math.random()*24; this.sc=0; this.a=0;
-    this.ma=.13+Math.random()*.12; this.hold=100+Math.random()*160;
-    this.phase='in'; this.dead=false; this.delay=Math.random()*120;
-    this.rot=(Math.random()-.5)*.5;
-    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
-  }
-  update(){
-    if(this.delay>0){this.delay--;return;}
-    if(this.phase==='in'){
-      this.sc=Math.min(1,this.sc+.05); this.a=Math.min(this.ma,this.a+.007);
-      if(this.sc>=1) this.phase='hold';
-    } else if(this.phase==='hold'){
-      if(--this.hold<=0) this.phase='out';
-    } else {
-      this.a=Math.max(0,this.a-.005); this.sc=Math.max(0,this.sc-.03);
-      if(this.a<=0) this.dead=true;
-    }
-  }
-  draw(){
-    if(this.a<=0||this.delay>0) return;
-    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot); ctx.scale(this.sc,this.sc);
-    if(this.t===0) drawPaw(0,0,this.r,this.a,this.c);
-    else if(this.t===1) drawCat(0,0,this.r,this.a,this.c);
-    else drawBamboo(0,0,this.r*3,this.a,this.c);
-    ctx.restore(); ctx.globalAlpha=1;
-  }
-}
-
-const floaters=[...Array(28)].map((_,i)=>new Floater(i<28));
-const sliders=[], poppers=[...Array(20)].map(()=>new Popper());
-let slTimer=30;
+const floaters=[...Array(16)].map((_,i)=>new Floater(i<16));
 (function loop(){
   ctx.clearRect(0,0,W,H);
   floaters.forEach(p=>{p.update();p.draw();});
-  if(--slTimer<=0){ sliders.push(new Slider()); slTimer=40+Math.random()*60; }
-  for(let i=sliders.length-1;i>=0;i--){ sliders[i].update(); sliders[i].draw(); if(sliders[i].dead) sliders.splice(i,1); }
-  for(let i=0;i<poppers.length;i++){ poppers[i].update(); poppers[i].draw(); if(poppers[i].dead) poppers[i]=new Popper(); }
   requestAnimationFrame(loop);
 })();
 
