@@ -617,7 +617,7 @@ class Floater {
     this.x=Math.random()*W;
     this.y=init?Math.random()*H:H+60;
     // サイズをバラバラに（小さいのも大きいのも）
-    this.r=8+Math.random()*28;
+    this.r=18+Math.random()*38;
     // 速度もバラバラ
     this.vx=(Math.random()-.5)*(0.2+Math.random()*.6);
     this.vy=-(0.15+Math.random()*.55);
@@ -639,7 +639,7 @@ class Floater {
   }
 }
 
-const floaters=[...Array(16)].map((_,i)=>new Floater(i<16));
+const floaters=[...Array(30)].map((_,i)=>new Floater(i<30));
 (function loop(){
   ctx.clearRect(0,0,W,H);
   floaters.forEach(p=>{p.update();p.draw();});
