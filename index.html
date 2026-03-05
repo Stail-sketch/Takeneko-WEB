@@ -14,7 +14,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
-#particles{position:fixed;inset:0;z-index:10;pointer-events:none}
+#particles{position:fixed;inset:0;z-index:2;pointer-events:none}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,250,252,.88);backdrop-filter:blur(20px);border-bottom:2px solid var(--pink-lt);display:flex;align-items:center;justify-content:space-between;padding:.6rem 2.5rem;transition:all .3s}
@@ -66,7 +66,8 @@ nav.scrolled{box-shadow:0 4px 30px rgba(255,133,179,.15)}
 
 /* SECTIONS */
 section{position:relative;z-index:1}
-.si{max-width:1300px;margin:0 auto;padding:5.5rem 2rem}
+.si{max-width:1300px;margin:0 auto;padding:5.5rem 2rem;position:relative;z-index:3}
+.hero-inner{position:relative;z-index:3}
 .st{text-align:center;margin-bottom:3rem}
 .st h2{display:inline-flex;align-items:center;gap:.5rem;position:relative;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;padding-bottom:.6rem}
 .st h2::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60%;height:4px;background:linear-gradient(90deg,var(--pink),var(--mint));border-radius:999px}
@@ -547,7 +548,7 @@ let W, H;
 function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize(); window.addEventListener('resize', resize);
 
-const PC = ['#ff85b3','#e879b0','#c97aff','#ffb3d4','#ff9ec8','#f0abff','#ffcce4'];
+const PC = ['#ff3d8a','#d4278a','#9333ea','#ff6ba8','#c026d3','#e040a0','#7c3aed'];
 
 function sty(a,c,lw){ ctx.globalAlpha=a; ctx.strokeStyle=c; ctx.lineWidth=lw; ctx.lineCap='round'; ctx.lineJoin='round'; }
 
