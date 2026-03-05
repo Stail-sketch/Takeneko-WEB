@@ -593,20 +593,33 @@ function drawCat(x,y,r,a,c){
 
 // 竹
 function drawBamboo(x,y,h,a,c){
-  const lw=Math.max(1.5,h*.055);
-  sty(a,c,lw);
-  const n=3, sh=h/n;
+  const lw=Math.max(2,h*.045);
+  const n=4, sh=h/n;
+  // 幹（2本の線で太さを表現）
   for(let i=0;i<n;i++){
-    const sy=y-i*sh, ey=y-(i+1)*sh+sh*.05;
-    ctx.beginPath(); ctx.moveTo(x,sy); ctx.lineTo(x,ey); ctx.stroke();
+    const bot=y-i*sh, top=bot-sh+sh*.1;
+    sty(a,c,lw);
+    ctx.beginPath(); ctx.moveTo(x-lw*.6,bot); ctx.lineTo(x-lw*.6,top); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x+lw*.6,bot); ctx.lineTo(x+lw*.6,top); ctx.stroke();
+    // 節（二重線で関節っぽく）
+    ctx.lineWidth=lw*.7;
+    ctx.beginPath(); ctx.moveTo(x-lw*1.8,top); ctx.lineTo(x+lw*1.8,top); ctx.stroke();
+    ctx.lineWidth=lw*.45;
+    ctx.beginPath(); ctx.moveTo(x-lw*1.5,top+sh*.08); ctx.lineTo(x+lw*1.5,top+sh*.08); ctx.stroke();
+    // 葉（bezierで自然なカーブ）
+    const ls=(i%2===0)?1:-1;
+    const lx=x+ls*lw*.5, ly=bot-sh*.55;
     ctx.lineWidth=lw*.55;
-    ctx.beginPath(); ctx.moveTo(x-lw*1.8,ey); ctx.lineTo(x+lw*1.8,ey); ctx.stroke();
-    const ls=(i%2===0)?1:-1, lbx=x+ls*lw*.5, lby=sy-sh*.45;
-    ctx.lineWidth=lw*.5;
-    ctx.beginPath(); ctx.moveTo(lbx,lby);
-    ctx.quadraticCurveTo(lbx+ls*h*.24,lby-h*.13,lbx+ls*h*.36,lby-h*.02);
+    ctx.beginPath();
+    ctx.moveTo(lx,ly);
+    ctx.bezierCurveTo(lx+ls*h*.12,ly-h*.1, lx+ls*h*.3,ly-h*.08, lx+ls*h*.38,ly+h*.02);
     ctx.stroke();
-    ctx.lineWidth=lw;
+    // 小さい葉2枚目
+    ctx.lineWidth=lw*.4;
+    ctx.beginPath();
+    ctx.moveTo(lx,ly-sh*.2);
+    ctx.bezierCurveTo(lx+ls*h*.08,ly-sh*.2-h*.07, lx+ls*h*.2,ly-sh*.2-h*.05, lx+ls*h*.25,ly-sh*.2+h*.015);
+    ctx.stroke();
   }
 }
 
@@ -617,7 +630,7 @@ class Floater {
     this.x=Math.random()*W;
     this.y=init?Math.random()*H:H+60;
     // サイズをバラバラに（小さいのも大きいのも）
-    this.r=18+Math.random()*38;
+    this.r=18+Math.random()*21;
     // 速度もバラバラ
     this.vx=(Math.random()-.5)*(0.2+Math.random()*.6);
     this.vy=-(0.15+Math.random()*.55);
