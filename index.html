@@ -540,32 +540,169 @@ footer a:hover{color:var(--pink)}
 </div>
 
 <script>
-// PARTICLES
+// PARTICLES – ねこ / 肉球 / 竹 canvas animation
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let W, H;
-const EMOJIS = ['🐾','✦','♡','🎋','🐱','✿','⋆'];
 function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize(); window.addEventListener('resize', resize);
-class P {
-  constructor(){ this.reset(true); }
-  reset(init=false){
-    this.x=Math.random()*W; this.y=init?Math.random()*H:H+30;
-    this.size=12+Math.random()*14; this.speed=.3+Math.random()*.5;
-    this.opacity=.06+Math.random()*.1; this.rot=Math.random()*360;
-    this.rotSpeed=(Math.random()-.5)*1.5;
-    this.emoji=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
-  }
-  update(){ this.y-=this.speed; this.rot+=this.rotSpeed; if(this.y<-40)this.reset(); }
-  draw(){
-    ctx.save(); ctx.globalAlpha=this.opacity; ctx.font=this.size+'px serif';
-    ctx.translate(this.x,this.y); ctx.rotate(this.rot*Math.PI/180);
-    ctx.fillText(this.emoji,-this.size/2,this.size/2); ctx.restore();
+
+const PC = ['#ff85b3','#e879b0','#c97aff','#ffb3d4','#ff9ec8','#f0abff','#ffcce4'];
+
+function sty(a,c,lw){ ctx.globalAlpha=a; ctx.strokeStyle=c; ctx.lineWidth=lw; ctx.lineCap='round'; ctx.lineJoin='round'; }
+
+// 肉球
+function drawPaw(x,y,r,a,c){
+  sty(a,c,Math.max(1,r*.09));
+  ctx.beginPath(); ctx.ellipse(x,y+r*.18,r*.42,r*.3,0,0,Math.PI*2); ctx.stroke();
+  [[-.38,-.3],[0,-.46],[.38,-.3],[.55,-.04]].forEach(([dx,dy])=>{
+    ctx.beginPath(); ctx.ellipse(x+dx*r,y+dy*r,r*.16,r*.14,dx*.4,0,Math.PI*2); ctx.stroke();
+  });
+}
+
+// ねこ顔
+function drawCat(x,y,r,a,c){
+  const lw=Math.max(1,r*.07);
+  sty(a,c,lw);
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke();
+  [[-1,1],[1,-1]].forEach(([s])=>{
+    ctx.beginPath();
+    ctx.moveTo(x+s*r*.55,y-r*.62);
+    ctx.lineTo(x+s*r*.28,y-r*1.12);
+    ctx.lineTo(x-s*r*.08,y-r*.78);
+    ctx.stroke();
+  });
+  ctx.lineWidth=lw*.8;
+  [-.32,.32].forEach(ex=>{
+    ctx.beginPath(); ctx.arc(x+ex*r,y-r*.1,r*.11,Math.PI,0,true); ctx.stroke();
+  });
+  ctx.beginPath();
+  ctx.moveTo(x-r*.07,y+r*.2); ctx.lineTo(x,y+r*.3); ctx.lineTo(x+r*.07,y+r*.2); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x,y+r*.3); ctx.quadraticCurveTo(x-r*.18,y+r*.42,x-r*.28,y+r*.36);
+  ctx.moveTo(x,y+r*.3); ctx.quadraticCurveTo(x+r*.18,y+r*.42,x+r*.28,y+r*.36);
+  ctx.stroke();
+  ctx.lineWidth=lw*.5;
+  [-1,1].forEach(s=>{
+    [[.2],[.32]].forEach(([wy])=>{
+      ctx.beginPath(); ctx.moveTo(x+s*r*.14,y+r*wy); ctx.lineTo(x+s*r*.78,y+r*wy); ctx.stroke();
+    });
+  });
+}
+
+// 竹
+function drawBamboo(x,y,h,a,c){
+  const lw=Math.max(1.5,h*.055);
+  sty(a,c,lw);
+  const n=3, sh=h/n;
+  for(let i=0;i<n;i++){
+    const sy=y-i*sh, ey=y-(i+1)*sh+sh*.05;
+    ctx.beginPath(); ctx.moveTo(x,sy); ctx.lineTo(x,ey); ctx.stroke();
+    ctx.lineWidth=lw*.55;
+    ctx.beginPath(); ctx.moveTo(x-lw*1.8,ey); ctx.lineTo(x+lw*1.8,ey); ctx.stroke();
+    const ls=(i%2===0)?1:-1, lbx=x+ls*lw*.5, lby=sy-sh*.45;
+    ctx.lineWidth=lw*.5;
+    ctx.beginPath(); ctx.moveTo(lbx,lby);
+    ctx.quadraticCurveTo(lbx+ls*h*.24,lby-h*.13,lbx+ls*h*.36,lby-h*.02);
+    ctx.stroke();
+    ctx.lineWidth=lw;
   }
 }
-const particles=[];
-for(let i=0;i<35;i++) particles.push(new P());
-(function loop(){ ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(loop); })();
+
+// ふわふわ上昇
+class Floater {
+  constructor(init=false){ this.spawn(init); }
+  spawn(init=false){
+    this.x=Math.random()*W; this.y=init?Math.random()*H:H+60;
+    this.vx=(Math.random()-.5)*.32; this.vy=-(0.25+Math.random()*.35);
+    this.r=10+Math.random()*13; this.a=.038+Math.random()*.05;
+    this.rot=Math.random()*Math.PI*2; this.rv=(Math.random()-.5)*.016;
+    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
+  }
+  update(){ this.x+=this.vx; this.y+=this.vy; this.rot+=this.rv; if(this.y<-70)this.spawn(); }
+  draw(){
+    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot);
+    if(this.t===0) drawPaw(0,0,this.r,this.a,this.c);
+    else if(this.t===1) drawCat(0,0,this.r,this.a,this.c);
+    else drawBamboo(0,0,this.r*2.8,this.a,this.c);
+    ctx.restore(); ctx.globalAlpha=1;
+  }
+}
+
+// 左右スライド
+class Slider {
+  constructor(){ this.spawn(); }
+  spawn(){
+    this.left=Math.random()<.5;
+    this.x=this.left?-90:W+90; this.y=80+Math.random()*(H-160);
+    this.vx=this.left?(0.42+Math.random()*.52):-(0.42+Math.random()*.52);
+    this.r=16+Math.random()*22; this.a=0; this.ta=.048+Math.random()*.05;
+    this.rot=(Math.random()-.5)*.35;
+    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
+    this.dead=false;
+  }
+  update(){
+    this.x+=this.vx;
+    if(this.a<this.ta) this.a=Math.min(this.ta,this.a+.003);
+    const m=110;
+    if(this.left&&this.x>W-m) this.a=Math.max(0,this.a-.004);
+    if(!this.left&&this.x<m) this.a=Math.max(0,this.a-.004);
+    if((this.left&&this.x>W+130)||(!this.left&&this.x<-130)) this.dead=true;
+  }
+  draw(){
+    if(this.a<=0) return;
+    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot);
+    if(this.t===0) drawPaw(0,0,this.r,this.a,this.c);
+    else if(this.t===1) drawCat(0,0,this.r,this.a,this.c);
+    else drawBamboo(0,0,this.r*2.8,this.a,this.c);
+    ctx.restore(); ctx.globalAlpha=1;
+  }
+}
+
+// ポップイン
+class Popper {
+  constructor(){ this.spawn(); }
+  spawn(){
+    this.x=60+Math.random()*(W-120); this.y=80+Math.random()*(H-160);
+    this.r=12+Math.random()*16; this.sc=0; this.a=0;
+    this.ma=.042+Math.random()*.05; this.hold=90+Math.random()*150;
+    this.phase='in'; this.dead=false; this.delay=Math.random()*200;
+    this.rot=(Math.random()-.5)*.5;
+    this.t=Math.floor(Math.random()*3); this.c=PC[Math.floor(Math.random()*PC.length)];
+  }
+  update(){
+    if(this.delay>0){this.delay--;return;}
+    if(this.phase==='in'){
+      this.sc=Math.min(1,this.sc+.038); this.a=Math.min(this.ma,this.a+.004);
+      if(this.sc>=1) this.phase='hold';
+    } else if(this.phase==='hold'){
+      if(--this.hold<=0) this.phase='out';
+    } else {
+      this.a=Math.max(0,this.a-.0028); this.sc=Math.max(0,this.sc-.02);
+      if(this.a<=0) this.dead=true;
+    }
+  }
+  draw(){
+    if(this.a<=0||this.delay>0) return;
+    ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot); ctx.scale(this.sc,this.sc);
+    if(this.t===0) drawPaw(0,0,this.r,this.a,this.c);
+    else if(this.t===1) drawCat(0,0,this.r,this.a,this.c);
+    else drawBamboo(0,0,this.r*2.8,this.a,this.c);
+    ctx.restore(); ctx.globalAlpha=1;
+  }
+}
+
+const floaters=[...Array(18)].map((_,i)=>new Floater(i<18));
+const sliders=[], poppers=[...Array(14)].map(()=>new Popper());
+let slTimer=60;
+(function loop(){
+  ctx.clearRect(0,0,W,H);
+  floaters.forEach(p=>{p.update();p.draw();});
+  if(--slTimer<=0){ sliders.push(new Slider()); slTimer=65+Math.random()*95; }
+  for(let i=sliders.length-1;i>=0;i--){ sliders[i].update(); sliders[i].draw(); if(sliders[i].dead) sliders.splice(i,1); }
+  for(let i=0;i<poppers.length;i++){ poppers[i].update(); poppers[i].draw(); if(poppers[i].dead) poppers[i]=new Popper(); }
+  requestAnimationFrame(loop);
+})();
 
 // REVEAL
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.04});
