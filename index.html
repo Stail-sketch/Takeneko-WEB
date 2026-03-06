@@ -756,8 +756,18 @@ body.dark .omikuji-sub{color:#9a70c0!important}
         <div class="sic">🍡</div><div class="sn">ましゅまろ</div><div class="sh">すきってゆえ！！！</div>
       </a>
     </div>
-    <!-- X プロフィールカード -->
-    <a href="https://x.com/TAKENEKOchan" target="_blank" rel="noopener" class="x-card rv">
+    <!-- X タイムライン（ウィジェット優先・ブロック時フォールバック） -->
+    <div id="tw-widget-wrap" class="tw-wrap rv">
+      <a class="twitter-timeline"
+         data-theme="dark"
+         data-tweet-limit="5"
+         data-chrome="noheader nofooter noborders transparent"
+         data-lang="ja"
+         href="https://x.com/TAKENEKOchan">
+        Tweets by @TAKENEKOchan
+      </a>
+    </div>
+    <a href="https://x.com/TAKENEKOchan" target="_blank" rel="noopener" class="x-card rv" id="x-card-fallback" style="display:none">
       <div class="x-card-header">
         <span class="x-logo">𝕏</span>
         <div class="x-card-name">
@@ -768,6 +778,23 @@ body.dark .omikuji-sub{color:#9a70c0!important}
       <p class="x-card-bio">ねこのVTuber🐾 サモナーズリフトの住人🗡️<br>イブリンOTP ／ #ﾀｹﾈｺｶﾜｲｲﾔｯﾀｰ</p>
       <div class="x-card-btn">最新ポストを見る →</div>
     </a>
+    <script>
+    (function(){
+      var s=document.createElement('script');
+      s.src='https://platform.twitter.com/widgets.js';
+      s.charset='utf-8';
+      s.async=true;
+      document.head.appendChild(s);
+      setTimeout(function(){
+        var wrap=document.getElementById('tw-widget-wrap');
+        if(wrap&&!wrap.querySelector('iframe')){
+          wrap.style.display='none';
+          var fb=document.getElementById('x-card-fallback');
+          if(fb) fb.style.display='block';
+        }
+      },4500);
+    })();
+    </script>
   </div>
 </section>
 
