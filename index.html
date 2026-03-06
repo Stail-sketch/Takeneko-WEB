@@ -46,6 +46,9 @@ html{scroll-padding-top:3.6rem}
 .htag{display:inline-block;background:linear-gradient(90deg,var(--pink),var(--purple));color:white;border-radius:999px;padding:.55rem 1.8rem;font-size:1.05rem;font-weight:800;letter-spacing:.05em;margin-bottom:2.4rem;box-shadow:0 4px 20px rgba(255,133,179,.45);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(255,133,179,.45)}50%{box-shadow:0 4px 35px rgba(255,133,179,.8),0 0 0 8px rgba(255,133,179,.1)}}
 .hbtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.hero-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin-top:1.8rem}
+.hnav-item{display:inline-flex;align-items:center;gap:.3rem;padding:.45rem 1.1rem;border-radius:999px;font-size:.88rem;font-weight:700;text-decoration:none;color:var(--black);background:rgba(255,255,255,.18);border:1.5px solid rgba(255,133,179,.35);backdrop-filter:blur(6px);transition:all .2s;white-space:nowrap}
+.hnav-item:hover{background:rgba(255,133,179,.22);border-color:var(--pink);transform:translateY(-2px);box-shadow:0 4px 14px rgba(255,133,179,.3)}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;border-radius:999px;font-weight:800;font-size:1.1rem;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:inherit}
 .btn:hover{transform:translateY(-4px)}
 .btn-p{background:linear-gradient(90deg,var(--pink),var(--purple));color:white;box-shadow:0 4px 20px rgba(255,133,179,.5)}
@@ -314,6 +317,8 @@ body.dark .pc-g{background:linear-gradient(135deg,#1a0d3a,#140828)!important;bor
 body.dark .sc{background:#2a1f35!important;border-color:#4a2560!important}
 body.dark .arrow-btn{background:#2a1f35!important}
 body.dark .btn-o{background:#2a1f35!important}
+body.dark .hnav-item{color:var(--black);background:rgba(255,255,255,.07);border-color:rgba(201,160,255,.3)}
+body.dark .hnav-item:hover{background:rgba(201,160,255,.18);border-color:#c9a0ff}
 body.dark .cbox{background:rgba(42,31,53,.9)!important;border-color:rgba(201,122,255,.3)!important}
 body.dark .tw-wrap{border-color:#4a2560!important}
 body.dark .clip-nav{background:rgba(42,31,53,.9)!important}body.dark .chip{background:#2a1f35!important;border-color:#4a2560!important;color:var(--pink)!important}
@@ -396,6 +401,14 @@ body.dark .omikuji-sub{color:#9a70c0!important}
         <a href="#gallery" class="btn btn-p">🎨 ギャラリーを見る</a>
         <a href="https://x.com/TAKENEKOchan" target="_blank" rel="noopener" class="btn btn-o">𝕏 フォローする</a>
       </div>
+      <nav class="hero-nav">
+        <a href="#profile" class="hnav-item">🐈 たけねこちゃんとは</a>
+        <a href="#omikuji-section" class="hnav-item">🎋 たけねこおみくじ</a>
+        <a href="#gallery" class="hnav-item">🖼️ ギャラリー</a>
+        <a href="#clips" class="hnav-item">🎬 クリップ</a>
+        <a href="#sns" class="hnav-item">🔗 SNSリンク</a>
+        <a href="#contact" class="hnav-item">✉️ お仕事依頼</a>
+      </nav>
     </div>
   </div>
   <span class="hero-deco hd1">🐾</span><span class="hero-deco hd2">🎋</span>
