@@ -1188,9 +1188,9 @@ window.addEventListener('scroll',()=>{
       isDragging = true;
       moved = false;
       startX = clientX;
-      startTX = getX();
-      track.style.animationPlayState = 'paused';
-      track.style.transform = `translateX(${startTX}px)`;
+      startTX = getX();           // アニメーション中の現在位置を取得
+      track.style.animation = 'none'; // アニメーション完全停止
+      track.style.transform = `translateX(${startTX}px)`; // 位置を固定
       wrap.classList.add('is-dragging');
     }
 
