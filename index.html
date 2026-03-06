@@ -749,17 +749,27 @@ body.dark .omikuji-sub{color:#9a70c0!important}
       </a>
     </div>
     <!-- Twitter タイムライン -->
-    <div class="tw-wrap rv">
+    <div class="tw-wrap rv" id="tw-wrap">
       <a class="twitter-timeline"
-         data-theme="light"
+         data-theme="dark"
          data-tweet-limit="5"
          data-chrome="noheader nofooter noborders transparent"
          data-lang="ja"
-         href="https://twitter.com/TAKENEKOchan">
+         href="https://x.com/TAKENEKOchan">
         Tweets by @TAKENEKOchan
       </a>
     </div>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+    (function(){
+      var s=document.createElement('script');
+      s.src='https://platform.twitter.com/widgets.js';
+      s.charset='utf-8';
+      s.onload=function(){
+        if(window.twttr&&twttr.widgets) twttr.widgets.load(document.getElementById('tw-wrap'));
+      };
+      document.head.appendChild(s);
+    })();
+    </script>
   </div>
 </section>
 
