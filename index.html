@@ -1132,6 +1132,62 @@ window.addEventListener('scroll',()=>{
 function slideLeft(id){ document.getElementById(id).scrollBy({left:-550,behavior:'smooth'}); }
 function slideRight(id){ document.getElementById(id).scrollBy({left:550,behavior:'smooth'}); }
 
+// ====== GALLERY AUTO SCROLL ======
+(function(){
+  function setupAutoScroll(sliderId, speed) {
+    const slider = document.getElementById(sliderId);
+    if (!slider) return;
+
+    // CSS scroll-behavior を切って RAF で直接制御
+    slider.style.scrollBehavior = 'auto';
+
+    // 全アイテムを複製してループ素材を追加
+    const originals = Array.from(slider.children);
+    originals.forEach(item => {
+      const clone = item.cloneNode(true);
+      clone.dataset.clone = '1';
+      slider.appendChild(clone);
+    });
+
+    // 複製アイテムのクリックで元のライトボックスを開く
+    slider.querySelectorAll('[data-clone="1"]').forEach(clone => {
+      clone.addEventListener('click', () => {
+        const src = clone.dataset.src;
+        const idx = allItems.findIndex(it => it.dataset.src === src);
+        if (idx >= 0) openLb(idx);
+      });
+    });
+
+    let paused = false;
+    let lastTs = null;
+
+    function tick(ts) {
+      if (!paused && lastTs !== null) {
+        slider.scrollLeft += speed * (ts - lastTs);
+        // 半分超えたら先頭へジャンプ（シームレスループ）
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+          slider.scrollLeft -= slider.scrollWidth / 2;
+        }
+      }
+      lastTs = paused ? null : ts;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // ホバー・タッチで一時停止
+    slider.addEventListener('mouseenter', () => paused = true);
+    slider.addEventListener('mouseleave', () => { paused = false; });
+    let tTimer;
+    slider.addEventListener('touchstart', () => { paused = true; clearTimeout(tTimer); }, { passive: true });
+    slider.addEventListener('touchend', () => { tTimer = setTimeout(() => paused = false, 1500); }, { passive: true });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setupAutoScroll('photos-slider', 0.035); // お写真：ゆっくり
+    setupAutoScroll('fanart-slider', 0.055); // ファンアート：少し速め
+  });
+})();
+
 
 // LIGHTBOX
 const lb=document.getElementById('lb');
